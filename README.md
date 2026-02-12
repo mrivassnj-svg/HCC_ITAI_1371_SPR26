@@ -1,115 +1,96 @@
-ITAI-1371 – Classic Machine Learning
+# ITAI-1371 – Classic Machine Learning  
+**Houston Community College (HCC) | Spring 2026**
 
-Houston Community College (HCC) | Spring 2026
+This repository contains my lab assignments and coursework for **ITAI-1371: Classic Machine Learning**. The course combines theoretical foundations of machine learning with practical development tools and collaborative workflows used in modern data science and AI environments.
 
-This repository contains my lab assignments and projects for ITAI-1371: Classic Machine Learning at Houston Community College during the Spring 2026 semester.
+---
 
-The course focuses on foundational machine learning concepts, practical development tools, and collaborative workflows used in real-world AI and data science environments.
+## 📌 Course Overview
 
-📚 Course Objectives
+This course emphasizes both conceptual understanding and applied technical skills, including:
 
-Throughout this course, I will:
+- Version control and collaboration using **Git & GitHub**
+- Data manipulation with **pandas**
+- Numerical computing with **NumPy**
+- Data visualization using **matplotlib**
+- Data preprocessing for machine learning workflows
+- Reproducible notebook-based development in **Google Colab**
+- Analytical reflection on technical learning and problem-solving
 
-Develop proficiency with GitHub for version control and collaboration
+---
 
-Apply data manipulation techniques using pandas
-
-Perform numerical computations with NumPy
-
-Create visualizations using matplotlib
-
-Implement data preprocessing workflows for machine learning
-
-Practice reproducible ML development using structured notebooks
-
-Strengthen technical reflection and analytical thinking
-
-🧪 Lab Structure
+## 🧪 Lab Structure
 
 Each lab in this repository includes:
 
-A completed lab notebook (exported as PDF)
+- Completed lab notebook (exported as PDF when required)
+- All executed code with visible outputs
+- Data visualizations and analysis
+- A reflective journal analyzing learning insights and technical challenges
+- Proper version control practices (branching, commits, pull requests when applicable)
 
-All required outputs and visualizations
+All work is completed independently unless otherwise specified by the assignment.
 
-A reflective journal analyzing learning insights and challenges
+---
 
-Proper version control using branches and pull requests (when required)
+## 🔹 Lab 01 – Getting Started with GitHub
 
-🔹 Lab 01 – Getting Started with GitHub
+**Objective:** Establish foundational GitHub skills for collaboration and project submission.
 
-This lab introduced foundational GitHub skills essential for machine learning collaboration.
+**Skills Demonstrated:**
+- Creating and configuring a public repository
+- Cloning repositories locally
+- Creating and managing branches
+- Committing and pushing changes
+- Opening and merging Pull Requests
+- Team-based collaboration using version control
 
-Skills Practiced:
+This lab established the workflow framework that will be used throughout the semester for managing and submitting machine learning projects.
 
-Creating and managing repositories
+---
 
-Cloning repositories locally
+## 🔹 Lab 02 – ML Development Tools
 
-Creating branches
+**Objective:** Explore essential Python tools used in machine learning development.
 
-Making commits
+**Technologies Used:**
+- Python
+- pandas
+- NumPy
+- matplotlib
+- Google Colab
 
-Pushing changes
+**Core Competencies Developed:**
+- DataFrame manipulation and indexing
+- Vectorized numerical operations
+- Data visualization and interpretation
+- Data cleaning and preprocessing techniques
+- Reproducible execution of notebook-based workflows
 
-Opening and merging Pull Requests
+The assignment also required a 1–2 page reflective journal focused on conceptual understanding, challenges encountered, and problem-solving strategies.
 
-Collaborating with team members
+---
 
-Deliverable included a shared file (hello_ml.txt) demonstrating successful collaboration through version control.
+## 🛠 Tools & Technologies
 
-This lab established the workflow that will be used throughout the semester for submitting and managing ML projects.
+- Python  
+- Git & GitHub  
+- Google Colab  
+- pandas  
+- NumPy  
+- matplotlib  
 
-🔹 Lab 02 – ML Development Tools
+---
 
-This lab focused on core machine learning development tools using Google Colab.
-
-Technologies Used:
-
-Python
-
-pandas
-
-NumPy
-
-matplotlib
-
-Key Learning Areas:
-
-DataFrame manipulation
-
-Numerical operations with arrays
-
-Data visualization techniques
-
-Data preprocessing practices
-
-Reproducibility in ML workflows
-
-The assignment also included a 1–2 page reflective journal analyzing conceptual growth, challenges, and problem-solving strategies.
-
-🛠 Tools & Technologies
-
-Python
-
-Google Colab
-
-Git & GitHub
-
-pandas
-
-NumPy
-
-matplotlib
-
-🎯 Purpose of This Repository
+## 🎯 Repository Purpose
 
 This repository serves as:
 
-A structured archive of coursework
+- A structured academic record of coursework
+- A demonstration of practical machine learning development skills
+- Evidence of professional version control practices
+- A growing portfolio of foundational AI and data science work
 
-Documentation of technical skill development
+---
 
-A demonstration of version control practices
-
-A growing portfolio of machine learning work
+*This repository reflects my ongoing development in machine learning, data analysis, and collaborative software workflows.*
