@@ -1,280 +1,312 @@
-# Midterm Data Preparation Project
-## CTU-IoT-Malware-Capture-8 Dataset
+---
 
-### Technical Lead 1: Michael
-Role: Data Ingestion, Cleaning, and Preprocessing Pipeline
+# Project Overview
+
+This project focuses on preparing a real-world cybersecurity dataset for use in a machine learning environment. The dataset contains network traffic data collected from Internet of Things (IoT) devices infected with malware.
+
+The objective of this project is to transform the raw dataset into a clean, structured format suitable for machine learning analysis. The preparation process includes data cleaning, feature engineering, encoding categorical variables, scaling numeric features, and separating the dataset into training and testing subsets.
+
+The prepared dataset can later be used to build models that identify malicious network traffic patterns.
 
 ---
 
-# Overview
+# Dataset Information
 
-This notebook implements the **initial data preparation pipeline** for the CTU-IoT-Malware-Capture-8 dataset.  
-The objective is to transform the **raw dataset into a machine learning ready format** while following the requirements outlined in the course midterm project.
-
-All preprocessing operations were performed **programmatically** to ensure the original dataset remains unchanged.
-
-The cleaned dataset will serve as the **foundation for Exploratory Data Analysis (EDA), feature analysis, and model development** performed by the remaining team members.
-
----
-
-# Dataset Source
-
-Original Dataset:
+Dataset Name  
 CTU-IoT-Malware-Capture-8
 
-The dataset contains network traffic information collected from IoT devices infected with malware.  
-The goal of this dataset is to identify **malicious network activity using machine learning techniques**.
+Dataset Source  
+Kaggle
+
+Dataset Description
+
+This dataset contains network connection records captured from IoT devices infected with malware. Each row represents a network connection containing information about protocol, packet counts, bytes transferred, connection states, and other network features.
+
+The goal of the dataset is to detect malicious traffic behavior using machine learning techniques.
 
 ---
 
-# Data Processing Steps Completed
+# Repository Structure
 
-The following preprocessing operations were implemented in this notebook.
 
-## 1. Dataset Loading
-
-The raw dataset was loaded directly into the Python environment.
-
-
-The original file was **not modified manually** to comply with assignment requirements.
-/content/CTU-IoT-Malware-Capture-8-1conn_Use_this_one-1.csv
----
-
-# 2. Removal of Problematic Features
-
-Certain columns were removed based on dataset analysis and domain knowledge.
-
-### Removed Columns
-
-**id.resp_p**
-
-Reason:
-Malicious traffic consistently uses TCP port 50.  
-If retained, the machine learning model could learn this shortcut rather than detecting malicious behavior from meaningful features.
-
-**history**
-
-Reason:
-This column contains complex categorical patterns that significantly increase dimensionality while providing limited predictive value for this stage of the project.
-
----
-
-# 3. Data Type Conversion
-
-The `duration` column contained text values and missing data.
-
-It was converted to numeric format using:
-pd.to_numeric(errors="coerce")
-
-
-Missing values were replaced with the **median value** of the column.
-
-This ensures numerical consistency for machine learning algorithms.
-
----
-
-# 4. Categorical Data Cleanup
-
-The `service` column contained placeholder values represented by "-".
-
-These placeholders were replaced with:
-"Unknown"
-
-
-This preserves the category while allowing it to be encoded later during the feature engineering stage.
-
----
-
-# 5. Training and Testing Dataset Split
-
-The dataset was divided into two subsets:
-
-Training dataset: 70%  
-Testing dataset: 30%
-
-This split ensures that:
-
-• Exploratory Data Analysis (EDA) is performed only on training data  
-• The testing dataset remains untouched for future evaluation
-
-Implementation:
-train_test_split(test_size=0.30, random_state=42)
-
-
----
-
-# 6. Handling Missing Values
-
-All numeric columns were scanned for missing values.
-
-Missing values were replaced using the **median of each column**, which is less sensitive to outliers than the mean.
-
----
-
-# 7. Feature Engineering
-
-Two derived features were created to provide additional behavioral insight into network traffic patterns.
-
-### bytes_per_packet
-
-Represents the average number of bytes transmitted per packet.
-bytes_per_packet = orig_bytes / (orig_pkts + 1)
-
-
-These features help capture **traffic intensity and communication behavior**, which are useful indicators of malicious activity.
-
----
-
-# 8. Removal of High Cardinality Identifiers
-
-The following identifiers were removed before encoding:
-uid
-id.orig_h
-id.resp_h
-
-
-These fields represent unique identifiers and IP addresses that would create thousands of unnecessary encoded columns.
-
-Removing them improves model generalization.
-
----
-
-# 9. Categorical Encoding
-
-Categorical variables were transformed into machine learning compatible features using **one-hot encoding**.
-pd.get_dummies()
-
-
-This converts categorical labels into binary feature vectors.
-
----
-
-# 10. Feature Scaling
-
-All numeric features were standardized using:
-StandardScaler()
-
-
-Scaling ensures that features have:
-
-Mean = 0  
-Standard Deviation = 1
-
-This improves performance for many machine learning algorithms.
-
----
-
-# Output Files
-
-Processed datasets are stored in the project directory structure.
-ml_midterm_project/
+midterm-data-prep/
 
 data/
 ├── raw/
+│ └── CTU-IoT-Malware-Capture-8-1conn_Use_this_one-1.csv
 │
 └── processed/
 ├── train_clean.csv
 └── test_dataset.csv
 
 figures/
+├── univariate_plot.png
+└── correlation_heatmap.png
 
 notebooks/
+└── midterm_pipeline.ipynb
 
 reports/
+├── dataset_description.pdf
+├── proposal.pdf
+└── reflection_journal.pdf
 
+README.md
 
-### Training Dataset
-test_dataset.csv
-
-
-This dataset remains **untouched** and will be used later for **model evaluation and validation**.
 
 ---
 
-# Next Steps for the Team
+# Data Preparation Pipeline
 
-The remaining stages of the project will be completed by the other team members.
+The preprocessing pipeline was implemented in a Jupyter Notebook and includes the following steps.
 
----
+## 1. Data Loading
 
-## Technical Lead 2
-
-Responsibilities:
-
-• Validate feature engineering results  
-• Identify additional derived features  
-• Prepare dataset for machine learning models  
-• Ensure feature consistency between training and testing datasets
+The raw dataset was loaded into the Python environment using Pandas. The original dataset was not modified manually in order to preserve data integrity.
 
 ---
 
-## EDA and Visualization Lead
+## 2. Feature Removal
 
-Responsibilities:
+Two columns were removed due to potential bias or complexity.
 
-Perform exploratory data analysis **using the training dataset only**.
+Column | Reason
+------ | ------
+id.resp_p | Malicious connections consistently use TCP port 50, which could allow a model to learn a shortcut instead of meaningful patterns
+history | Complex categorical feature that significantly increases dimensionality
 
-Recommended analyses:
+---
+
+## 3. Data Type Conversion
+
+The `duration` column contained text values and missing entries.
+
+This column was converted to numeric format using:
+
+
+pd.to_numeric(errors="coerce")
+
+
+Missing values were replaced using the median of the column.
+
+---
+
+## 4. Handling Categorical Placeholders
+
+The `service` column contained placeholder values represented by `-`.
+
+These values were replaced with:
+
+
+Unknown
+
+
+This preserves the categorical feature for encoding.
+
+---
+
+## 5. Dataset Splitting
+
+The dataset was divided into:
+
+Training Data: 70%  
+Testing Data: 30%
+
+The testing dataset remains untouched for future model evaluation.
+
+---
+
+## 6. Missing Value Handling
+
+All numeric columns were scanned for missing values.
+
+Missing values were replaced with the median value of each column.
+
+---
+
+## 7. Feature Engineering
+
+Two derived features were created.
+
+### Bytes per Packet
+
+
+bytes_per_packet = orig_bytes / (orig_pkts + 1)
+
+
+Represents the average amount of data transferred per packet.
+
+---
+
+### Packet Density
+
+
+packet_density = orig_pkts / (duration + 1)
+
+
+Represents the rate of packet transmission over time.
+
+---
+
+## 8. Removal of High Cardinality Features
+
+The following columns were removed before encoding because they represent identifiers rather than useful predictive features.
+
+
+uid
+id.orig_h
+id.resp_h
+
+
+These values would create extremely large numbers of encoded columns.
+
+---
+
+## 9. Categorical Encoding
+
+Categorical variables were converted to numeric format using one-hot encoding.
+
+
+pd.get_dummies()
+
+
+This converts categorical values into binary features suitable for machine learning algorithms.
+
+---
+
+## 10. Feature Scaling
+
+Numeric features were standardized using:
+
+
+StandardScaler()
+
+
+This ensures all numeric variables share a similar scale, improving model performance.
+
+---
+
+# Output Datasets
+
+Two datasets are generated by the pipeline.
+
+File | Purpose
+---- | -------
+train_clean.csv | Clean dataset used for analysis and training
+test_dataset.csv | Untouched dataset reserved for evaluation
+
+---
+
+# Exploratory Data Analysis
+
+EDA is performed only on the training dataset.
+
+Visualizations include:
 
 • Feature distributions  
-• Correlation matrix  
-• Class imbalance analysis  
-• Malicious vs benign traffic patterns  
-• Outlier detection
+• Correlation heatmap  
+• Network traffic behavior patterns  
 
-Visualizations should be saved to:
-figures/
-
+Generated figures are stored in the `figures` directory.
 
 ---
 
-## Documentation and Reporting Lead
+# Machine Learning Objective
 
-Responsibilities:
+The prepared dataset can be used to build models capable of detecting malicious network activity in IoT devices.
 
-Prepare the final documentation required for submission.
+Possible models include:
 
-Deliverables include:
+• Logistic Regression  
+• Random Forest  
+• Support Vector Machines  
+• Neural Networks  
 
-• Dataset description document  
-• Project proposal  
-• Reflection journal describing each team member’s contribution  
-• GitHub repository organization  
-• README documentation
-
----
-
-# Alignment with Course Requirements
-
-This notebook satisfies the following project requirements:
-
-✔ Filling NaN and Null values  
-✔ Scaling numerical features  
-✔ Encoding categorical variables  
-✔ Feature engineering  
-✔ Train/Test dataset split (70/30)  
-✔ Dataset preparation for machine learning  
-✔ Preservation of the original dataset  
+The goal is to classify network traffic as either benign or malicious based on connection behavior.
 
 ---
 
-# Author Contribution
+# Team Roles and Contributions
 
-Michael  
-Technical Lead 1
+Technical Lead 1 – Michael
 
-Responsibilities completed:
+Responsibilities
 
 • Data ingestion pipeline  
 • Dataset cleaning  
-• Feature preparation  
 • Missing value handling  
 • Feature engineering  
-• Categorical encoding  
+• Encoding categorical variables  
 • Feature scaling  
-• Training/testing dataset split  
-• Preparation of ML-ready dataset
+• Training and testing dataset split  
+• Preparation of ML-ready dataset  
 
-This pipeline establishes the foundation for all subsequent analysis and modeling tasks performed by the team.
+---
+
+Technical Lead 2 – Omar
+
+Responsibilities
+
+• Additional feature engineering  
+• Dataset validation  
+• Preparation for machine learning models  
+
+---
+
+EDA and Visualization Lead – Mourinho
+
+Responsibilities
+
+• Exploratory data analysis on training dataset  
+• Statistical analysis of features  
+• Visualization generation  
+
+---
+
+Documentation and Reporting Lead
+
+Responsibilities
+
+• Dataset documentation  
+• Project proposal  
+• Reflection journal  
+• GitHub repository management  
+
+---
+
+# How to Run the Notebook
+
+1. Open the notebook in Google Colab.
+
+2. Upload the dataset or mount Google Drive.
+
+3. Run the notebook cells sequentially.
+
+The notebook will automatically:
+
+• Clean the dataset  
+• Engineer new features  
+• Encode categorical variables  
+• Scale numeric features  
+• Split the dataset into training and testing sets  
+
+---
+
+# Project Deliverables
+
+The following documents are included in the repository.
+
+Document | Description
+-------- | -----------
+dataset_description.pdf | Overview of dataset and features
+proposal.pdf | One-page project proposal
+reflection_journal.pdf | Individual team contributions
+midterm_pipeline.ipynb | Data preparation notebook
+
+---
+
+# Summary
+
+This project demonstrates the process of preparing a real-world cybersecurity dataset for machine learning applications. Through systematic data cleaning, feature engineering, and preprocessing, the dataset is transformed into a structured format suitable for training machine learning models capable of detecting malicious IoT traffic.
 
 ---
