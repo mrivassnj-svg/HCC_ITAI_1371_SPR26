@@ -1,5 +1,26 @@
-#Dataset availible from link below:
-https://www.kaggle.com/datasets/tentotheminus9/empres-global-animal-disease-surveillance
+=========================================================
+DATA SOURCE INFORMATION: A-PIG-IMPACT PROJECT
+=========================================================
 
-#Target dataset is labeled:
-Outbreak_240817.csv
+1. DATASET ORIGIN
+-----------------
+Title: EMPRES Global Animal Disease Surveillance
+Provider: FAO (Food and Agriculture Organization of the United Nations)
+Source Link: https://www.kaggle.com/datasets/tentotheminus9/empres-global-animal-disease-surveillance
+
+2. TARGET FILENAME
+------------------
+Filename: Outbreak_240817.csv
+Format: Comma-Separated Values (CSV)
+
+3. PROJECT CONTEXT
+------------------
+Target Species: Swine/Pig
+Classification Task: Binary classification of disease occurrence (sumCases > 0).
+Units: Geographic coordinates (Lat/Long), temporal timestamps, and incident counts.
+
+4. USAGE NOTES
+--------------
+- The raw dataset should be placed in the 'data/raw/' directory.
+- Preprocessing scripts filter this data specifically for swine-related impacts to optimize model performance.
+- Last Verified: May 2026
